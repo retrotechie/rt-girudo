@@ -1,7 +1,7 @@
 import "./register.scss";
 import { Link } from "react-router-dom";
 
-const Register = () => {
+const Register = (): JSX.Element => {
   return (
     <div className="register">
       <div className="card">
