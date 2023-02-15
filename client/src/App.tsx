@@ -8,7 +8,7 @@ import Register from "./pages/Register/Register";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-function App() {
+function App(): JSX.Element {
   // Use PascalCase for component names, got error with `layout`
   const Layout = (): JSX.Element => {
     // `Outlet` renders child route elements e.g. `Home`, `Profile`
@@ -44,6 +44,7 @@ function App() {
       element: <Register />,
     },
   ]);
+
   return (
     <div>
       <RouterProvider router={router} />
