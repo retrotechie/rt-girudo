@@ -6,7 +6,13 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
+import React from "react";
 
 function App(): JSX.Element {
   // Use PascalCase for component names, got error with `layout`
@@ -24,10 +30,28 @@ function App(): JSX.Element {
     );
   };
 
+  const isLoggedIn = false;
+  const ProtectedRoute = ({
+    children,
+  }: {
+    children: React.ReactNode;
+  }): JSX.Element => {
+    if (!isLoggedIn) return <Navigate to="/login" />;
+
+    // In React, a component can only return a single node.
+    // The `children` prop of a component is often an array of nodes, in order
+    // to return all of the children, they need to be wrapped in a single node.
+    return <>{children}</>; // `<> </>` syntax declares a fragment
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: "/",
