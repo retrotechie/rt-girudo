@@ -1,5 +1,13 @@
 .leftbar {
   flex: 2;
+  position: sticky;
+  top: 70px;  // `Navbar` height 50px + padding 20px (top 10px + bottom 10px)
+  height: calc(100vh - 70px); // Remain position under `Navbar` when scrolling
+  overflow: scroll; // Fix `Leftbar` cannot scroll down
+
+  &::-webkit-scrollbar {  // Hide `Leftbar` scrollbar
+    display: none;
+  }
 
   .container {
     padding: 20px;
