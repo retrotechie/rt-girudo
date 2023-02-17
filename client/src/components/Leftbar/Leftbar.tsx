@@ -26,6 +26,22 @@ const Leftbar = (): JSX.Element => {
             <img src={Friends} alt="" />
             <span>Friends</span>
           </div>
+          <div className="item">
+            <img src={Groups} alt="" />
+            <span>Groups</span>
+          </div>
+          <div className="item">
+            <img src={Market} alt="" />
+            <span>Market</span>
+          </div>
+          <div className="item">
+            <img src={Watch} alt="" />
+            <span>Watch</span>
+          </div>
+          <div className="item">
+            <img src={Memories} alt="" />
+            <span>Memories</span>
+          </div>
         </div>
       </div>
     </div>
