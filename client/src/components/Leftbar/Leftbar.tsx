@@ -43,6 +43,50 @@ const Leftbar = (): JSX.Element => {
             <span>Memories</span>
           </div>
         </div>
+
+        <hr />
+
+        <div className="menu">
+          <span>Your shortcuts</span>
+          <div className="item">
+            <img src={Events} alt="" />
+            <span>Events</span>
+          </div>
+          <div className="item">
+            <img src={Gaming} alt="" />
+            <span>Gaming</span>
+          </div>
+          <div className="item">
+            <img src={Gallery} alt="" />
+            <span>Gallery</span>
+          </div>
+          <div className="item">
+            <img src={Videos} alt="" />
+            <span>Videos</span>
+          </div>
+          <div className="item">
+            <img src={Messages} alt="" />
+            <span>Messages</span>
+          </div>
+        </div>
+
+        <hr />
+
+        <div className="menu">
+          <span>Others</span>
+          <div className="item">
+            <img src={Tutorial} alt="" />
+            <span>Tutorial</span>
+          </div>
+          <div className="item">
+            <img src={Courses} alt="" />
+            <span>Courses</span>
+          </div>
+          <div className="item">
+            <img src={Fund} alt="" />
+            <span>Fund</span>
+          </div>
+        </div>
       </div>
     </div>
   );
