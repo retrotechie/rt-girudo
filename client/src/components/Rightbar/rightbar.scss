@@ -17,6 +17,7 @@
       -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
       box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
       padding: 20px;
+      margin-bottom: 20px;
 
       span {
         color: grey;
@@ -38,6 +39,10 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
+          }
+
+          p {
+            color: grey;
           }
 
           span {
