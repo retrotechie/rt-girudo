@@ -60,6 +60,60 @@ const Rightbar = (): JSX.Element => {
             <span>1 min ago</span>
           </div>
         </div>
+
+        <div className="item">
+          <span>Online Friends</span>
+          <div className="user">
+            <div className="user-info">
+              <img
+                src="https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+              <div className="online" />
+              <span>Elon Musk</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="user-info">
+              <img
+                src="https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+              <div className="online" />
+              <span>Elon Musk</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="user-info">
+              <img
+                src="https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+              <div className="online" />
+              <span>Elon Musk</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="user-info">
+              <img
+                src="https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+              <div className="online" />
+              <span>Elon Musk</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="user-info">
+              <img
+                src="https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+              <div className="online" />
+              <span>Elon Musk</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
