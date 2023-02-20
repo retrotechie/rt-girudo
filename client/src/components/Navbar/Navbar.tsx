@@ -14,7 +14,7 @@ const Navbar = (): JSX.Element => {
     <div className="navbar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span>greenguild</span>
+          <span>Girudo</span>
         </Link>
         <HomeOutlinedIcon />
         <DarkModeOutlinedIcon />
