@@ -6,6 +6,8 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
+import "./style.scss";
+
 import {
   createBrowserRouter,
   Navigate,
@@ -19,7 +21,7 @@ function App(): JSX.Element {
   const Layout = (): JSX.Element => {
     // `Outlet` renders child route elements e.g. `Home`, `Profile`
     return (
-      <div>
+      <div className="theme-dark">
         <Navbar />
         <div style={{ display: "flex" }}>
           <Leftbar />
