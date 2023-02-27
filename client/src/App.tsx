@@ -6,24 +6,32 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
+import { DarkModeContext } from "./context/DarkMode";
+
+import "./style.scss";
+
 import {
   createBrowserRouter,
   Navigate,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-import React from "react";
+import React, { useContext } from "react";
 
 function App(): JSX.Element {
+  const { darkMode } = useContext(DarkModeContext);
+
   // Use PascalCase for component names, got error with `layout`
   const Layout = (): JSX.Element => {
     // `Outlet` renders child route elements e.g. `Home`, `Profile`
     return (
-      <div>
+      <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <Navbar />
         <div style={{ display: "flex" }}>
           <Leftbar />
-          <Outlet />
+          <div style={{ flex: 6 }}>
+            <Outlet />
+          </div>
           <Rightbar />
         </div>
       </div>
@@ -36,7 +44,7 @@ function App(): JSX.Element {
   }: {
     children: React.ReactNode;
   }): JSX.Element => {
-    if (!isLoggedIn) return <Navigate to="/login" />;
+    if (isLoggedIn) return <Navigate to="/login" />;
 
     // In React, a component can only return a single node.
     // The `children` prop of a component is often an array of nodes, in order
