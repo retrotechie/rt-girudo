@@ -6,7 +6,7 @@ import "./stories.scss";
 interface Story {
   id: number;
   name: string;
-  content: string;
+  media: string;
 }
 
 const Stories = (): JSX.Element => {
@@ -17,31 +17,31 @@ const Stories = (): JSX.Element => {
     {
       id: 1,
       name: "Story 1",
-      content:
+      media:
         "https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 2,
       name: "Story 2",
-      content:
+      media:
         "https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 3,
       name: "Story 3",
-      content:
+      media:
         "https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 4,
       name: "Story 4",
-      content:
+      media:
         "https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 5,
       name: "Story 5",
-      content:
+      media:
         "https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
   ];
@@ -57,8 +57,8 @@ const Stories = (): JSX.Element => {
       {
         // Use `map` to iterate over `stories` array
         stories.map((story) => (
-          <div className="story">
-            <img src={story.content} alt="" />
+          <div className="story" key={story.id}>
+            <img src={story.media} alt="" />
             <span>{story.name}</span>
           </div>
         ))
