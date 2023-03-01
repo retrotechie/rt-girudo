@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AuthContext } from "../../context/Auth";
+
 import "./stories.scss";
 
 interface Story {
@@ -7,6 +10,8 @@ interface Story {
 }
 
 const Stories = (): JSX.Element => {
+  const { currentUser } = useContext(AuthContext);
+
   const stories: Story[] = [
     // Temporary
     {
@@ -43,6 +48,12 @@ const Stories = (): JSX.Element => {
 
   return (
     <div className="stories">
+      <div className="story">
+        <img src={currentUser?.profilePic} alt="" />
+        <span>{currentUser?.name}</span>
+        <button>+</button>
+      </div>
+
       {
         // Use `map` to iterate over `stories` array
         stories.map((story) => (
