@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
 import { DarkModeContext } from "./context/DarkMode";
+import { AuthContext } from "./context/Auth";
 
 import "./style.scss";
 
@@ -38,13 +39,13 @@ function App(): JSX.Element {
     );
   };
 
-  const isLoggedIn = false;
+  const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({
     children,
   }: {
     children: React.ReactNode;
   }): JSX.Element => {
-    if (isLoggedIn) return <Navigate to="/login" />;
+    if (!currentUser) return <Navigate to="/login" />;
 
     // In React, a component can only return a single node.
     // The `children` prop of a component is often an array of nodes, in order
