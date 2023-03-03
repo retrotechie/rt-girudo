@@ -9,6 +9,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import "./profile.scss";
+import Posts from "../../components/Posts/Posts";
 
 const Profile = (): JSX.Element => {
   return (
@@ -28,7 +29,7 @@ const Profile = (): JSX.Element => {
       </div>
 
       <div className="profile-container">
-        <div className="user-info">
+        <div className="profile-info">
           <div className="left">
             <a href="http://facebook.com">
               <FacebookTwoToneIcon fontSize="medium" />
@@ -75,6 +76,8 @@ const Profile = (): JSX.Element => {
             <MoreVertIcon />
           </div>
         </div>
+
+        <Posts />
       </div>
     </div>
   );
