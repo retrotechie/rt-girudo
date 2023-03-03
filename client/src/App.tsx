@@ -5,6 +5,7 @@ import Rightbar from "./components/Rightbar/Rightbar";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Profile from "./pages/Profile/Profile";
 
 import { DarkModeContext } from "./context/DarkMode";
 import { AuthContext } from "./context/Auth";
@@ -65,6 +66,10 @@ function App(): JSX.Element {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/profile/:id",
+          element: <Profile />,
         },
       ],
     },
