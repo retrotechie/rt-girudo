@@ -6,7 +6,11 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import "./post.scss";
 import { Link } from "react-router-dom";
+import Comments from "../Comments/Comments";
+import { useState } from "react";
 
+// Declare `post` props is bc `Post` is using props passed down from its parent
+// component (`<Post post={post} ... />`)
 interface PostProps {
   post: {
     id: number;
@@ -19,6 +23,7 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps): JSX.Element => {
+  const [commentOpen, setCommentOpen] = useState(false);
   const liked = false;
 
   // TODO: Detect whether `media` is a video or a picture
@@ -51,7 +56,7 @@ const Post = ({ post }: PostProps): JSX.Element => {
             {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
             12 Likes
           </div>
-          <div className="item">
+          <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
             12 Comments
           </div>
@@ -60,6 +65,8 @@ const Post = ({ post }: PostProps): JSX.Element => {
             12 Shares
           </div>
         </div>
+
+        {commentOpen && <Comments />}
       </div>
     </div>
   );
