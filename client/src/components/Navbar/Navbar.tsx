@@ -41,7 +41,12 @@ const Navbar = (): JSX.Element => {
         <NotificationsOutlinedIcon />
         <div className="user">
           <img src={currentUser?.profilePic} alt="" />
-          <span>{currentUser?.name}</span>
+          <Link
+            to="/profile/{currentUser?.id}"
+            style={{ textDecoration: "none" }}
+          >
+            <span>{currentUser?.name}</span>
+          </Link>
         </div>
       </div>
     </div>
