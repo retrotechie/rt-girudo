@@ -1,0 +1,9 @@
+USE girudo;
+/*
+ `SET FOREIGN_KEY_CHECKS = 0;` only use in MySQL
+ */
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS posts,
+users;
+SET FOREIGN_KEY_CHECKS = 1;
+DROP DATABASE IF EXISTS girudo;
