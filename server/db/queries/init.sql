@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `girudo`;
 USE `girudo`;
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `Users` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(45) NOT NULL,
     `password` VARCHAR(200) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `users` (
      */
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE
 );
-CREATE TABLE IF NOT EXISTS `posts` (
+CREATE TABLE IF NOT EXISTS `Posts` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `description` VARCHAR(200) NULL,
     `media` VARCHAR(200) NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
      */
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE IF NOT EXISTS `Comments` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `description` VARCHAR(200) NOT NULL,
     `date_created` DATETIME NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `stories` (
+CREATE TABLE IF NOT EXISTS `Stories` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `media` VARCHAR(200) NOT NULL,
     `user_id` INT NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `stories` (
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `relationships` (
+CREATE TABLE IF NOT EXISTS `Relationships` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `follower_user_id` INT NOT NULL,
     `followed_user_id` INT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `relationships` (
     FOREIGN KEY (`follower_user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`followed_user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS `likes` (
+CREATE TABLE IF NOT EXISTS `Likes` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
