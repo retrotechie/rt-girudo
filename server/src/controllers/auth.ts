@@ -1,11 +1,12 @@
-import { db } from "../../db/connect";
+import { db } from "../../db/connect.js";
 import bcrypt from "bcryptjs";
+import { Request, Response } from "express";
 
-export const register = (req, res) => {
+export const register = (req: Request, res: Response): void => {
   // * Check if user exists
-  const checkUserQuery = "SELECT FROM `Users` WHERE `username` = ?"; // Use `?` instead of `req.body.username` for security
+  const checkUserQuery = "SELECT * FROM `Users` WHERE `username` = ?"; // Use `?` instead of `req.body.username` for security
 
-  db.query(checkUserQuery, [req.body.username], (err, data) => {
+  db.query(checkUserQuery, [req.body.username], (err: any, data: any) => {
     if (err) return res.status(500).json(err);
 
     if (data.length) return res.status(409).json("User exists!");
@@ -24,12 +25,17 @@ export const register = (req, res) => {
       hashedPassword,
       req.body.name,
     ];
-    db.query(createUserQuery, [values], (err, data) => {
+    db.query(createUserQuery, [values], (err: any, data: any) => {
       if (err) return res.status(500).json(err);
+
       return res.status(200).json("User has been created");
     });
   });
 };
 
-export const login = (req, res) => {};
-export const logout = (req, res) => {};
+export const login = (req: Request, res: Response): void => {
+  console.log("Login");
+};
+export const logout = (req: Request, res: Response): void => {
+  console.log("Logout");
+};
