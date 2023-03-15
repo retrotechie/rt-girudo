@@ -1,4 +1,5 @@
 import { db } from "../../db/connect";
+import bcrypt from "bcryptjs";
 
 export const register = (req, res) => {
   // * Check if user exists
@@ -11,8 +12,10 @@ export const register = (req, res) => {
     ("User exists!");
   });
 
-  // Create a new user
+  // * Create a new user
   // Hash the password
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 };
 export const login = (req, res) => {};
 export const logout = (req, res) => {};
