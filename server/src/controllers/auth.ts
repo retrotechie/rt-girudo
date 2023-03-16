@@ -79,5 +79,17 @@ export const login = (req: Request, res: Response): void => {
 };
 
 export const logout = (req: Request, res: Response): void => {
-  console.log("Logout");
+  res
+    .clearCookie("accessToken", {
+      secure: true, // Ensure the cookie is ONLY sent over HTTPS, not HTTP
+
+      // `sameSite` determines whether the cookie can be sent to a different
+      // site or domain than the one that set the cookie. This is known as
+      // cross-site request forgery (CSRF) protection, and it helps to prevent
+      // malicious attacks that use a user's browser to perform actions on a
+      // different site without their knowledge.
+      sameSite: "none",
+    })
+    .status(200)
+    .json("User has been logged out");
 };
