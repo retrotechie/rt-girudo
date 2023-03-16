@@ -2,6 +2,8 @@ import express, { Application } from "express";
 const app: Application = express();
 
 import authRoutes from "./routes/auth.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 /*
 import userRoutes from "./routes/users";
 import postRoutes from "./routes/posts";
@@ -11,6 +13,8 @@ import likeRoutes from "./routes/likes";
 
 // * Middlewares
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 /*
