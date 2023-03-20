@@ -1,17 +1,29 @@
 import "./register.scss";
 import { Link } from "react-router-dom";
 import { ChangeEvent, MouseEvent, useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
+
+type Inputs = {
+  username: string;
+  email: string;
+  password: string;
+  name: string;
+};
+
+type ErrorResponse = {
+  message: string;
+  // Other fields, if any
+};
 
 const Register = (): JSX.Element => {
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState<Inputs>({
     username: "",
     email: "",
     password: "",
     name: "",
   });
 
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState<ErrorResponse | null>(null);
 
   // `handleChange` is called every time an input field's value changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +35,6 @@ const Register = (): JSX.Element => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // FIXME: change `any` to a specific type
   // `handleClick` is an asynchronous func & takes a `MouseEvent` as an argument
   // The `MouseEvent` is for the button click event.
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -34,11 +45,11 @@ const Register = (): JSX.Element => {
       // request body. `axios.post` returns a promise so we use `await` to wait
       // for the response.
       await axios.post("http://localhost:8800/api/auth/register", inputs);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // The error object is stored in the `err` variable & `setErr` is called
       // to update the state variable `err` with the error message from the
       // server response.
-      setErr(err.response.data);
+      if (isAxiosError(err)) setErr(err.response?.data);
     }
   };
 
@@ -87,7 +98,7 @@ const Register = (): JSX.Element => {
               name="name"
               onChange={handleChange}
             />
-            {err && err}
+            <>{err && err}</>
             <button onClick={handleClick}>Register</button>
           </form>
         </div>
