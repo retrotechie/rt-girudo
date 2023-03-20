@@ -1,6 +1,7 @@
 import "./register.scss";
 import { Link } from "react-router-dom";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
+import axios, { AxiosError } from "axios";
 
 const Register = (): JSX.Element => {
   const [inputs, setInputs] = useState({
@@ -9,6 +10,8 @@ const Register = (): JSX.Element => {
     password: "",
     name: "",
   });
+
+  const [err, setErr] = useState(null);
 
   // `handleChange` is called every time an input field's value changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +23,26 @@ const Register = (): JSX.Element => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  console.log(inputs);
+  // FIXME: change `any` to a specific type
+  // `handleClick` is an asynchronous func & takes a `MouseEvent` as an argument
+  // The `MouseEvent` is for the button click event.
+  const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // To prevent page refresh when button is clicked
+
+    try {
+      // Send a POST request to `register` URL with the `inputs` data as the
+      // request body. `axios.post` returns a promise so we use `await` to wait
+      // for the response.
+      await axios.post("http://localhost:8800/api/auth/register", inputs);
+    } catch (err: any) {
+      // The error object is stored in the `err` variable & `setErr` is called
+      // to update the state variable `err` with the error message from the
+      // server response.
+      setErr(err.response.data);
+    }
+  };
+
+  console.log(err);
 
   return (
     <div className="register">
@@ -65,7 +87,8 @@ const Register = (): JSX.Element => {
               name="name"
               onChange={handleChange}
             />
-            <button>Register</button>
+            {err && err}
+            <button onClick={handleClick}>Register</button>
           </form>
         </div>
       </div>
