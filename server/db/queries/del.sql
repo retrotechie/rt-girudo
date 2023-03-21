@@ -1,9 +1,18 @@
-USE girudo;
-/*
- `SET FOREIGN_KEY_CHECKS = 0;` only use in MySQL
- */
-SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS posts,
-users;
-SET FOREIGN_KEY_CHECKS = 1;
-DROP DATABASE IF EXISTS girudo;
+USE `girudo`;
+
+SET FOREIGN_KEY_CHECKS = 0; -- Only use in MySQL
+SET GROUP_CONCAT_MAX_LEN = 32768;
+SET @tables = NULL;
+
+SELECT GROUP_CONCAT('`', table_name, '`') INTO @tables
+    FROM information_schema.tables
+    WHERE table_schema = (SELECT DATABASE());
+SELECT IFNULL(@tables, 'dummy') INTO @tables;
+
+SET @tables = CONCAT('DROP TABLE IF EXISTS ', @tables);
+PREPARE stmt FROM @tables;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+SET FOREIGN_KEY_CHECKS = 1;  -- Only use in MySQL
+
+DROP DATABASE IF EXISTS `girudo`;
