@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `girudo`;
 USE `girudo`;
+
 CREATE TABLE IF NOT EXISTS `Users` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(45) NOT NULL,
@@ -10,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `profile_picture` VARCHAR(300) NULL,
     `city` VARCHAR(45) NULL,
     `website` VARCHAR(45) NULL,
+
     PRIMARY KEY (`id`),
     /*
      A `visible` index is one that is used by the query optimizer to speed up 
@@ -17,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
      */
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE
 );
+
 CREATE TABLE IF NOT EXISTS `Posts` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `description` VARCHAR(200) NULL,
@@ -24,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `Posts` (
     `user_id` INT NOT NULL,
     /* `date_created = NULL` is temporary for testing, should be `NOT NULL`*/
     `date_created` DATETIME NULL,
+
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     /*
@@ -38,38 +42,46 @@ CREATE TABLE IF NOT EXISTS `Posts` (
      */
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS `Comments` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `description` VARCHAR(200) NOT NULL,
     `date_created` DATETIME NULL,
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
+
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS `Stories` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `media` VARCHAR(200) NOT NULL,
     `user_id` INT NOT NULL,
+
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS `Relationships` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `follower_user_id` INT NOT NULL,
     `followed_user_id` INT NOT NULL,
+
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     FOREIGN KEY (`follower_user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`followed_user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS `Likes` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `post_id` INT NOT NULL,
+    
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,

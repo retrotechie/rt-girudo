@@ -6,4 +6,4 @@ bash ./backup.sh
 echo "DELETING database !!!"
 echo "Enter your MySQL username:"
 read username
-mysql -u $username -p < ./queries/del.sql
+mysql -u $username -p < ./queries/delete.sql
