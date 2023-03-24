@@ -48,6 +48,7 @@ const Login = (): JSX.Element => {
     try {
       await login(inputs);
       navigate("/");
+      navigate(0); // FIXME: Temporary work around
     } catch (err: unknown) {
       if (isAxiosError(err)) setErr(err.response?.data);
     }

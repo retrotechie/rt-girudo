@@ -1,5 +1,5 @@
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import axios, { isAxiosError } from "axios";
 
@@ -35,6 +35,8 @@ const Register = (): JSX.Element => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const navigate = useNavigate();
+
   // `handleClick` is an asynchronous func & takes a `MouseEvent` as an argument
   // The `MouseEvent` is for the button click event.
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -45,6 +47,7 @@ const Register = (): JSX.Element => {
       // request body. `axios.post` returns a promise so we use `await` to wait
       // for the response.
       await axios.post("http://localhost:8800/api/auth/register", inputs);
+      navigate("/login");
     } catch (err: unknown) {
       // The error object is stored in the `err` variable & `setErr` is called
       // to update the state variable `err` with the error message from the
@@ -52,8 +55,6 @@ const Register = (): JSX.Element => {
       if (isAxiosError(err)) setErr(err.response?.data);
     }
   };
-
-  console.log(err);
 
   return (
     <div className="register">
