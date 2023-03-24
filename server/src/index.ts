@@ -13,7 +13,15 @@ import likeRoutes from "./routes/likes";
 
 // * Middlewares
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+
+    // Enables cookies, HTTP authentication, and client-side SSL certificates to
+    // be included in the requests.
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
